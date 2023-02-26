@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Document</title>
+  <base href="/">
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="traiding-block">
+      <div class="breadcrumbs">Главная . Обмен</div>
+      <div class="trades">
+        <h1>Обмен скинов</h1>
+        <section class="trades__item">
+          <!-------------------------------------TRADES ITEM TOP ---------------------------------------------------->
+          <div class="trades__item__top">
+            <div class="trades__item__top__item">
+              <span class="desc-field">Exterior</span>
+              <div class="line-wrapper">
+                <div class="line">
+                  <div class="line__circle"></div>
+                  <div class="line__circle"></div>
+                  <div class="line__circle"></div>
+                  <div class="line__circle"></div>
+                  <div class="line__circle"></div>
+                  <div class="line__circle"></div>
+                  <div class="line__circle"></div>
+                  <div class="line__circle"></div>
+
+                  <span class="line-section fn">FN</span>
+                  <span class="line-section mv">MV</span>
+                  <span class="line-section ft">FT</span>
+                  <span class="line-section ww">WW</span>
+                  <span class="line-section bs">BS</span>
+                </div>
+              </div>
+              <button class="my-button login-btn">Login</button>
+            </div>
+            <div class="trades__item__top__item">
+              <span class="desc-field">Quality</span>
+              <section class="quality-items">
+                <span>Army Quality</span>
+                <span>Prohibited</span>
+                <span>Classified</span>
+                <span>Secret</span>
+                <span>Contraband</span>
+              </section>
+            </div>
+          </div>
+          <!-------------------------------------TRADES ITEM MIDDLE ---------------------------------------------------->
+          <div class="trades__item__middle">
+            <div class="trades__item__middle__select">
+              <img src="./assets/trades-item-package.svg" alt="icon">
+              AWP, AK-47, USP-S
+              <img src="./assets/Polygon.svg" alt="icon">
+            </div>
+            <div class="trades__item__middle__item">
+              <input type="checkbox" name="" id="">
+              <span>StatTrack</span>
+            </div>
+            <div class="trades__item__middle__item">
+              <input type="checkbox" name="checkbox" id="checkbox">
+              <span>Souvenir</span>
+            </div>
+            <label for="take-seacrh-input" class="trades__item__middle__item">
+              <img src="./assets/search.svg" alt="search">
+              <input type="text" id="take-seacrh-input">
+            </label>
+          </div>
+          <!-------------------------------------TRADES ITEM BOTTOM ---------------------------------------------------->
+          <div class="trades__item__bottom">
+            <div class="trades__item__bottom__item">
+              <span>Give</span>
+              <label>
+                <div class="choosen-skins"></div>
+                <img src="./assets/add.svg" alt="add-icon" class="modal-open-icon">
+              </label>
+            </div>
+            <img class="exchange-icon" src="./assets/exchange.svg" alt="exchange">
+            <div class="trades__item__bottom__item">
+              <span>Take</span>
+              <label>
+                <div class="choosen-skins"></div>
+                <img src="./assets/add.svg" alt="add-icon" class="modal-open-icon">
+              </label>
+            </div>
+          </div>
+        </section>
+      </div>
+      <!------------------------------------------ PRODUCTS BLOCK ------------------------------------- -->
+      <section class="products-block"></section>
+
+      <!------------------------------------------ MODAL BLOCK ------------------------------------- -->
+
+      <div class="modal-wrapper">
+        <div class="modal-window">
+          <img src="./assets/close.svg" class="modal-close" alt="close">
+          <h1>Select skins from your inventory</h1>
+          <section class="modal-user-skins" ></section>
+          <button class="my-button">Add</button>
+        </div>
+      </div>
+    </div>
+
+    <!------------------------------------------ CHAT BLOCK ------------------------------------- -->
+    <div class="chat-block">
+      <div class="chat-messages"></div>
+      <label class="input-wrapper" for="message-input">
+        <input type="text" id="message-input" placeholder="Написать сообщение">
+        <img src="./assets/smile.svg" alt="">
+      </label>
+    </div>
+  </div>
+
+  <script src="./scripts/index.js"></script>
+</body>
+
+</html>
