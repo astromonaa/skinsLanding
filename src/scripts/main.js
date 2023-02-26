@@ -1,6 +1,8 @@
 export class Skin {
-  constructor(image, description, price) {
+  constructor(id, image, description, price, name) {
+    this.id = id;
     this.image = image;
+    this.name = name;
     this.description = description;
     this.price = price;
   }
@@ -8,12 +10,17 @@ export class Skin {
 
 
 
+
+
 export class Seller {
-  constructor(skins, totalPrice, avatar) {
+  constructor(skins, totalPrice, avatar, choosenSkins) {
     this.skins = skins;
     this.totalPrice = totalPrice;
-    this.avatar = avatar
+    this.avatar = avatar;
+    this.name = name;
     this.messages = [];
+    this.choosenSkins = choosenSkins;
+    this.operationType = null;
   }
 
   addSkin(skin) {
@@ -25,13 +32,38 @@ export class Seller {
   calculateTotalPrice() {
     this.skins.forEach(skin => this.totalPrice += skin.price)
   }
- 
+  setChoosenSkins(skins) {
+    this.choosenSkins = skins
+  }
+  setOperationType(type) {
+    this.operationType = type
+  }
+  renderChoosenSkins() {
+    let renderField;
+    if (this.operationType === 'give') {
+      renderField = document.querySelector('.give-choosen-skins')
+    }else {
+      renderField = document.querySelector('.take-choosen-skins')
+    }
+    this.choosenSkins.forEach(skin => {
+      const item = `
+        <div class="choosen-skins-item" name=${skin.id}>${skin.name}</div>
+      `
+      renderField.insertAdjacentHTML('beforeend', item)
+    })
+  }
 }
+
+
+
+
+
 
 export class Modal {
   constructor(seller) {
     this.seller = seller;
     this.open = false;
+    this.choosenSkins = []
     this.listen()
   }
 
@@ -40,7 +72,7 @@ export class Modal {
     this.seller.skins.forEach(skin => {
       const skinItem = `
         <div class="seller-skins__item">
-          <input type="checkbox" name="" id="" class="modal-skin-checkbox">
+          <input type="checkbox" name=${skin.id} class="modal-skin-checkbox">
           <img src=${skin.image} alt="skin">
           <div class="skin-desc">
             <span>${skin.description[0]}</span> /
@@ -60,9 +92,12 @@ export class Modal {
   listen() {
     document.querySelector('.trades__item__bottom').addEventListener('click', event => this.onModalOpen(event))
     document.querySelector('.modal-close').addEventListener('click', () => this.onModalClose())
+    document.querySelector('.modal-user-skins').addEventListener('click', event => this.onSkinChoose(event))
+    document.querySelector('.skin-add-button').addEventListener('click', () => this.onAddChoosenSkins())
   }
   onModalOpen(event) {
     if (event.target.classList.contains('modal-open-icon')) {
+      this.seller.setOperationType(event.target.name)
       this.open = true;
       this.updateView()
     }
@@ -70,6 +105,19 @@ export class Modal {
   onModalClose() {
     this.open = false;
     this.updateView()
+  }
+  onSkinChoose(event) {
+    if (event.target.classList.contains('modal-skin-checkbox')) {
+      const skin = this.seller.skins.find(el => el.id === Number(event.target.name))
+      this.choosenSkins.push(skin)
+    }
+  }
+  onAddChoosenSkins() {
+    this.seller.setChoosenSkins(this.choosenSkins)
+    this.seller.renderChoosenSkins()
+    this.open = false
+    this.updateView()
+    this.choosenSkins = []
   }
   updateView() {
     const modal = document.querySelector('.modal-wrapper');
@@ -104,9 +152,7 @@ export class Chat {
       const messagesBlock = document.querySelector('.chat-messages')
       const message = this.getUserMessage()
       messagesBlock.insertAdjacentHTML('beforeend', message)
-      const messages = document.querySelectorAll('.message-item')
-      const lastMessage = messages[messages.length - 1]
-      lastMessage.scrollIntoView({block: 'center', behavior: 'smooth'})
+      messagesBlock.scrollTo({top: messagesBlock.scrollHeight, behavior: 'smooth'})
       event.target.value = ''
     }
   }
@@ -128,24 +174,24 @@ export class Chat {
   }
   getOfferSkins() {
     const skins = [];
-    for (let i = 0; i < 5; i++) {
+    this.user.choosenSkins.forEach(skin => {
       const skinItem = `
         <div class="seller-skins__item">
           <input type="checkbox" name="" id="" class="modal-skin-checkbox">
-          <img src=${this.user.skins[i].image} alt="skin">
+          <img src=${skin.image} alt="skin">
           <div class="skin-desc">
-            <span>${this.user.skins[i].description[0]}</span> /
-            <span>${this.user.skins[i].description[1]}</span>
-            <span>${this.user.skins[i].description[2] ? `/ ${this.user.skins[i].description[2]}` : ''}</span>
+            <span>${skin.description[0]}</span> /
+            <span>${skin.description[1]}</span>
+            <span>${skin.description[2] ? `/ ${skin.description[2]}` : ''}</span>
           </div>
           <div class="skin-price">
             <span> &#x24;</span>
-            <span>${this.user.skins[i].price.toLocaleString('ru')}</span>
+            <span>${skin.price.toLocaleString('ru')}</span>
           </div>
         </div>
       `
       skins.push(skinItem)
-    }
+    })
     return skins.join('')
   }
 }

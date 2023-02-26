@@ -332,6 +332,35 @@ body {
   padding: 7px;
   margin-top: 10px;
 }
+.trades__item__bottom__item label .choosen-skins {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.trades__item__bottom__item label .choosen-skins .choosen-skins-item {
+  padding: 7px 15px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  border-radius: 5px;
+}
+.trades__item__bottom__item label .choosen-skins .choosen-skins-item:first-child {
+  color: #FCC02A;
+  background: rgba(252, 192, 42, 0.1);
+}
+.trades__item__bottom__item label .choosen-skins .choosen-skins-item:nth-child(even) {
+  background: rgba(214, 45, 48, 0.1);
+  color: #D62D30;
+}
+.trades__item__bottom__item label .choosen-skins .choosen-skins-item:nth-child(odd) {
+  background: rgba(214, 45, 48, 0.1);
+  color: #D62D30;
+}
+.trades__item__bottom__item label .choosen-skins .choosen-skins-item:nth-child(5n) {
+  background: rgba(43, 116, 185, 0.1);
+  color: #2B74B9;
+}
 .trades__item__bottom__item label img {
   margin-left: auto;
 }
@@ -477,6 +506,7 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr min-content;
+  max-height: 78vh;
 }
 .chat-block .input-wrapper {
   border: 1px solid #DDDDDD;
@@ -497,7 +527,7 @@ body {
 .chat-block .chat-messages {
   overflow: hidden;
   overflow-y: auto;
-  max-height: 655px;
+  max-height: 99%;
   transition: all 0.7s;
 }
 .chat-block .chat-messages::-webkit-scrollbar {

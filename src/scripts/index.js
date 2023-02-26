@@ -26,13 +26,13 @@ class App {
     this.initData.forEach(sellerItem => {
       const seller = new Seller([], 0, sellerItem.avatar)
       sellerItem.skins.forEach(skinItem => {
-        const skin = new Skin(skinItem.image, skinItem.description, skinItem.price)
+        const skin = new Skin(skinItem.id, skinItem.image, skinItem.description, skinItem.price, skinItem.name)
         seller.addSkin(skin)
         seller.increasePrice(skinItem.price)
       })
       this.sellers.push(seller)
     })
-    this.user = new Seller(this.sellers[0].skins, 0, this.sellers[0].avatar)
+    this.user = new Seller(this.sellers[0].skins, 0, this.sellers[0].avatar, [])
     this.user.calculateTotalPrice()
     this.modal = new Modal(this.user)
     this.chat = new Chat(this.user)

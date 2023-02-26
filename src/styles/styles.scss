@@ -393,6 +393,37 @@ body {
           padding: 7px;
           margin-top: 10px;
 
+          .choosen-skins {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 5px;
+            .choosen-skins-item {
+              padding: 7px 15px;
+              font-weight: 500;
+              font-size: 16px;
+              line-height: 20px;
+              border-radius: 5px;
+              &:first-child {
+                color: #FCC02A;
+                background: rgba(252, 192, 42, 0.1);
+              }
+              &:nth-child(even) {
+                background: rgba(214, 45, 48, 0.1);
+                color: #D62D30;
+              }
+              &:nth-child(odd) {
+                background: rgba(214, 45, 48, 0.1);
+                color: #D62D30;
+              }
+              &:nth-child(5n) {
+                background: rgba(43, 116, 185, 0.1);
+                color: #2B74B9;
+              }
+            }
+
+          }
+
           img {
             margin-left: auto;
           }
@@ -510,6 +541,7 @@ body {
   background: linear-gradient(0deg, rgba(45, 43, 45, 0.7), rgba(45, 43, 45, 0.7));
   display: none;
   z-index: 20;
+
   .modal-window {
     transform: scale(0.5);
     padding: 40px 25px 25px 25px;
@@ -565,6 +597,7 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr min-content;
+  max-height: 78vh;
 
   .input-wrapper {
     border: 1px solid #DDDDDD;
@@ -587,19 +620,23 @@ body {
   .chat-messages {
     overflow: hidden;
     overflow-y: auto;
-    max-height: 655px;
+    max-height: 99%;
     transition: all 0.7s;
+
     &::-webkit-scrollbar {
       width: 3px;
+
       &-thumb {
         border-radius: 100px;
         background-color: lightgray;
       }
     }
+
     .message-item {
       border-bottom: 1px solid #DDDDDD;
       padding-bottom: 27px;
       margin-bottom: 27px;
+
       &__top {
         display: flex;
         align-items: center;
@@ -620,6 +657,7 @@ body {
         margin-top: 15px;
         margin-bottom: 15px;
       }
+
       .offer-skins {
         display: flex;
         flex-wrap: wrap;
