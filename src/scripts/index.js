@@ -1,7 +1,7 @@
 import '../styles/styles.css'
 import '../styles/ui.css'
 import { initData } from '../utils/initData'
-import { Seller, Skin, Modal, Chat } from './main'
+import { Seller, Skin, Modal, Chat, TradeBoard } from './main'
 
 import tradesItem from '../assets/trades-item-package.svg'
 import Polygon from '../assets/Polygon.svg'
@@ -19,6 +19,7 @@ class App {
     this.user = null;
     this.modal = null;
     this.chat = null;
+    this.tradeBoard = null;
     this.init()
   }
 
@@ -36,6 +37,7 @@ class App {
     this.user.calculateTotalPrice()
     this.modal = new Modal(this.user)
     this.chat = new Chat(this.user)
+    this.tradeBoard = new TradeBoard(this.user)
   }
   renderData() {
     this.sellers.forEach(seller => {

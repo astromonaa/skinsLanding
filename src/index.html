@@ -29,10 +29,10 @@
                 <div class="line">
                   <div class="line__circle"></div>
                   <div class="line__circle"></div>
+                  <div class="line__circle move__point left__point"></div>
                   <div class="line__circle"></div>
                   <div class="line__circle"></div>
-                  <div class="line__circle"></div>
-                  <div class="line__circle"></div>
+                  <div class="line__circle move__point right__point"></div>
                   <div class="line__circle"></div>
                   <div class="line__circle"></div>
 
@@ -41,6 +41,17 @@
                   <span class="line-section ft">FT</span>
                   <span class="line-section ww">WW</span>
                   <span class="line-section bs">BS</span>
+                  
+                  <div class="line-numbers">
+                    <span data-value="0.01" class="line-number disabled">0.01</span>
+                    <span data-value="0.13" class="line-number disabled">0.13</span>
+                    <span data-value="0.24" class="line-number active">0.24</span>
+                    <span data-value="0.33" class="line-number ">0.33</span>
+                    <span data-value="0.53" class="line-number ">0.53</span>
+                    <span data-value="0.63" class="line-number active">0.63</span>
+                    <span data-value="0.73" class="line-number disabled">0.73</span>
+                    <span data-value="0.95" class="line-number disabled">1.00</span>
+                  </div>
                 </div>
               </div>
               <button class="my-button login-btn">Login</button>
@@ -71,9 +82,10 @@
               <input type="checkbox" name="checkbox" id="checkbox">
               <span>Souvenir</span>
             </div>
-            <label for="take-seacrh-input" class="trades__item__middle__item">
+            <label for="skins-seacrh-input" class="trades__item__middle__item">
               <img src="./assets/search.svg" alt="search">
-              <input type="text" id="take-seacrh-input">
+              <input type="text" id="skins-seacrh-input">
+              <div class="dropdown"></div>
             </label>
           </div>
           <!-------------------------------------TRADES ITEM BOTTOM ---------------------------------------------------->
@@ -120,7 +132,7 @@
       </label>
     </div>
   </div>
-
+  
   <script src="./scripts/index.js"></script>
 </body>
 

@@ -40,6 +40,9 @@ body {
 }
 .trades__item__top {
   border-bottom: 1px solid #DDDDDD;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+          user-select: none;
 }
 .trades__item__top button {
   align-self: flex-start;
@@ -116,27 +119,17 @@ body {
   border-width: 3px;
   position: absolute;
   top: -9px;
-}
-.trades__item__top .line-wrapper .line__circle::before {
-  position: absolute;
-  top: 26px;
-  left: -9px;
+  z-index: 1;
 }
 .trades__item__top .line-wrapper .line__circle:first-child {
   border-color: #C4E0A6;
   background: #D8F4BA;
   left: 0;
 }
-.trades__item__top .line-wrapper .line__circle:first-child::before {
-  content: "0.01";
-}
 .trades__item__top .line-wrapper .line__circle:nth-child(2) {
   border-color: #C4E0A6;
   background: #D8F4BA;
   left: 15.1685393258%;
-}
-.trades__item__top .line-wrapper .line__circle:nth-child(2)::before {
-  content: "0.07";
 }
 .trades__item__top .line-wrapper .line__circle:nth-child(3) {
   width: 28px;
@@ -146,18 +139,16 @@ body {
   border-width: 5px;
   left: 23.4082397004%;
   top: -14px;
+  --line-width: 34px;
 }
 .trades__item__top .line-wrapper .line__circle:nth-child(3)::after {
   content: "";
   position: absolute;
   border-top: 3px solid #69A042;
-  width: 34px;
+  width: var(--line-width);
   left: 22px;
   top: 7px;
-}
-.trades__item__top .line-wrapper .line__circle:nth-child(3)::before {
-  top: 30px;
-  content: "0.12";
+  z-index: 0;
 }
 .trades__item__top .line-wrapper .line__circle:nth-child(4) {
   border-color: #F9ED37;
@@ -172,24 +163,10 @@ body {
   left: 13px;
   top: 3px;
 }
-.trades__item__top .line-wrapper .line__circle:nth-child(4)::before {
-  content: "0.15";
-}
 .trades__item__top .line-wrapper .line__circle:nth-child(5) {
   border-color: #F8981D;
   background: #FDB64E;
   left: 54.8689138577%;
-}
-.trades__item__top .line-wrapper .line__circle:nth-child(5)::after {
-  content: "";
-  position: absolute;
-  border-top: 3px solid #F8981D;
-  width: 29px;
-  left: 13px;
-  top: 3px;
-}
-.trades__item__top .line-wrapper .line__circle:nth-child(5)::before {
-  content: "0.38";
 }
 .trades__item__top .line-wrapper .line__circle:nth-child(6) {
   width: 28px;
@@ -199,28 +176,32 @@ body {
   background-color: #fff;
   left: 63.2958801498%;
   top: -14px;
+  --line-width: 29px;
+  --left-pos: -34px;
 }
 .trades__item__top .line-wrapper .line__circle:nth-child(6)::before {
-  top: 30px;
-  content: "0.42";
+  content: "";
+  position: absolute;
+  border-top: 3px solid #F8981D;
+  width: var(--line-width);
+  left: var(--left-pos);
+  top: 6px;
+  z-index: 0;
 }
 .trades__item__top .line-wrapper .line__circle:nth-child(7) {
   border-color: #F04438;
   background: #E77373;
   left: 74.7191011236%;
 }
-.trades__item__top .line-wrapper .line__circle:nth-child(7)::before {
-  content: "0.45";
-}
 .trades__item__top .line-wrapper .line__circle:nth-child(8) {
   border-color: #F04438;
   background: #E77373;
-  left: 100%;
+  left: calc(100% - 16px);
 }
-.trades__item__top .line-wrapper .line__circle:nth-child(8)::before {
-  content: "1.00";
+.trades__item__top .line-wrapper .line .move__point {
+  z-index: 2;
 }
-.trades__item__top .line-wrapper .line .line-section {
+.trades__item__top .line-wrapper .line-section {
   position: absolute;
   top: -40px;
   font-size: 16px;
@@ -240,6 +221,50 @@ body {
 }
 .trades__item__top .line-wrapper .line .bs {
   left: 86.7041198502%;
+}
+.trades__item__top .line-wrapper .line-numbers {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  top: 26px;
+}
+.trades__item__top .line-wrapper .line-numbers span {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  position: absolute;
+  color: #2D2B2D;
+}
+.trades__item__top .line-wrapper .line-numbers span:first-child {
+  left: -7px;
+}
+.trades__item__top .line-wrapper .line-numbers span:nth-child(2) {
+  left: 13.2958801498%;
+}
+.trades__item__top .line-wrapper .line-numbers span:nth-child(3) {
+  left: 23.4082397004%;
+}
+.trades__item__top .line-wrapper .line-numbers span:nth-child(4) {
+  left: 33.7078651685%;
+}
+.trades__item__top .line-wrapper .line-numbers span:nth-child(5) {
+  left: 52.9962546816%;
+}
+.trades__item__top .line-wrapper .line-numbers span:nth-child(6) {
+  left: 62.734082397%;
+}
+.trades__item__top .line-wrapper .line-numbers span:nth-child(7) {
+  left: 73.0337078652%;
+}
+.trades__item__top .line-wrapper .line-numbers span:nth-child(8) {
+  left: calc(100% - 20px);
+}
+.trades__item__top .line-wrapper .line-numbers .disabled {
+  color: #B5B5B5;
+}
+.trades__item__top .line-wrapper .line-numbers .active {
+  font-size: 16px;
+  line-height: 20px;
 }
 .trades__item__middle {
   border-bottom: 1px solid #DDDDDD;
@@ -295,6 +320,7 @@ body {
   border-radius: 5px;
   width: 300px;
   margin-right: 25px;
+  position: relative;
 }
 .trades__item__middle__item:last-child input {
   width: 100%;
@@ -305,6 +331,61 @@ body {
   line-height: 20px;
   color: #2D2B2D;
   margin-left: 5px;
+}
+.trades__item__middle__item:last-child .dropdown {
+  position: absolute;
+  border: 1px solid #DDDDDD;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  left: 0;
+  top: 111%;
+  background-color: #fff;
+  z-index: 2;
+  max-height: 220px;
+  overflow: hidden;
+  overflow-y: auto;
+  gap: 10px;
+  flex-direction: column;
+  display: none;
+}
+.trades__item__middle__item:last-child .dropdown::-webkit-scrollbar {
+  width: 1px;
+}
+.trades__item__middle__item:last-child .dropdown::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  background-color: lightgray;
+}
+.trades__item__middle__item:last-child .dropdown__item {
+  display: flex;
+  align-items: center;
+}
+.trades__item__middle__item:last-child .dropdown__item div {
+  display: flex;
+  flex-direction: column;
+}
+.trades__item__middle__item:last-child .dropdown__item div span {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #2D2B2D;
+}
+.trades__item__middle__item:last-child .dropdown__item div span:first-child {
+  color: #B5B5B5;
+}
+.trades__item__middle__item:last-child .dropdown__item img:first-child {
+  width: 80px;
+  height: 60px;
+  background: #F8F9FB;
+  border-radius: 5px;
+  padding: 2px;
+  margin-right: 10px;
+}
+.trades__item__middle__item:last-child .dropdown__item img:last-child {
+  margin-left: auto;
+}
+.trades__item__middle__item:last-child .visible-dropdown {
+  display: flex;
 }
 .trades__item__bottom {
   display: flex;
