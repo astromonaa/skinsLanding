@@ -233,6 +233,7 @@ export class TradeBoard {
     document.addEventListener('mousemove', event => this.onRangeMouseMove(event))
     this.range.addEventListener('mousedown', event => this.onRangeMouseDown(event))
     document.addEventListener('mouseup', event => this.onMouseUp(event))
+    document.querySelector('.quality-items').addEventListener('click', event => this.onQualityChoose(event))
   }
   onRangeMouseMove(event) {
     this.mouse.x = event.clientX;
@@ -329,6 +330,12 @@ export class TradeBoard {
         el.classList.remove('active')
       }
     })
+  }
+  onQualityChoose(event) {
+    if (event.target.tagName === 'SPAN') {
+      document.querySelector('.quality-items__selected')?.classList?.remove('quality-items__selected')
+      event.target.classList.add('quality-items__selected')
+    }
   }
   onSkinSearch(event) {
     this.dropdown.innerHTML = ''
