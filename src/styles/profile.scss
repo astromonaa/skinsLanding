@@ -264,6 +264,9 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 15px;
+    .seller-skins__item:after {
+      content: none;
+    }
   }
 }
 
@@ -281,6 +284,14 @@
     margin-top: 8px;
     margin-bottom: 15px;
   }
+  input {
+    height: 0;
+    border: none;
+    position: absolute;
+  }
+}
+.copied {
+  border-color: rgb(112, 151, 112)!important;
 }
 .hidden-link__wrapper {
   height: min-content;

@@ -49,7 +49,7 @@ class ExchangeApp {
     this.chat = new Chat(this.user)
     this.user.setTradeBoard(this.tradeBoard)
   }
-  renderData() {
+  renderSellersList() {
     this.sellers.forEach(seller => {
       const sellerItem = document.createElement('div')
       const sellerItemTop = document.createElement('div')
@@ -127,7 +127,7 @@ class ProfileApp {
 if (!window.app) {
   if (window.location.pathname === '/'){
     window.app = new ExchangeApp(initData)
-    window.app.renderData()
+    window.app.renderSellersList()
   }else if (window.location.pathname === '/profile.html') {
     window.app = new ProfileApp(initData)
   }

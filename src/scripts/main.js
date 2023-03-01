@@ -17,9 +17,9 @@ export class Seller {
     this.skins = skins;
     this.totalPrice = totalPrice;
     this.avatar = avatar;
-    this.name = name;
     this.messages = [];
-    this.choosenSkins = [];
+    this.giveSkins = [];
+    this.takeSkins = [];
     this.offerSkins = []
     this.operationType = null;
     this.messages = []
@@ -37,10 +37,15 @@ export class Seller {
   }
   addChoosenSkin(event) {
     const skin = this.skins.find(el => el.id === Number(event.target.name))
-    this.choosenSkins.push(skin)
+    if (this.operationType === 'give') {
+      this.giveSkins.push(skin)
+    }else {
+      this.takeSkins.push(skin)
+    }
   }
   removeFromChoosenSkins(event) {
-    this.choosenSkins = this.choosenSkins.filter(el => el.id !== Number((event.target.name)))
+    let currentOpenSkins = this.getCurrentOpenSkins()
+    this[currentOpenSkins] = this[currentOpenSkins].filter(el => el.id !== Number(event.target.name))
   }
   addOfferSkin(event) {
     const skin = this.skins.find(el => el.id === Number(event.target.name))
@@ -64,6 +69,9 @@ export class Seller {
   setTradeBoard(board) {
     this.tradeBoard = board
   }
+  getCurrentOpenSkins() {
+    return this.operationType === 'give' ? 'giveSkins' : 'takeSkins'
+  }
   renderChoosenSkins() {
     let renderField;
     if (this.operationType === 'give') {
@@ -72,12 +80,12 @@ export class Seller {
       renderField = document.querySelector('.take-choosen-skins')
     }
     renderField.innerHTML = ''
-    this.choosenSkins.forEach(skin => {
+    this[this.getCurrentOpenSkins()].forEach(skin => {
       const item = `
         <div class="choosen-skins-item">
           ${skin.name}
-          <div name=${skin.id} class="choosen-remove">
-            <img name=${skin.id} src=${whiteClose}/>
+          <div name=${skin.id} data-operation=${this.operationType} class="choosen-remove">
+            <img name=${skin.id} data-operation=${this.operationType} src=${whiteClose}/>
           </div>
         </div>
       `
@@ -100,10 +108,11 @@ export class Modal {
 
   renderModalData(modalSkins) {
     modalSkins.innerHTML = ''
+    const currentOpenSkins = this.seller.getCurrentOpenSkins()
     this.seller.skins.forEach(skin => {
       const skinItem = `
         <div class="seller-skins__item">
-          <input type="checkbox" name=${skin.id} class="modal-skin-checkbox">
+          <input type="checkbox" name=${skin.id} ${this.seller[currentOpenSkins].includes(skin) && 'checked'} class="modal-skin-checkbox">
           <img src=${skin.image} alt="skin">
           <div class="skin-desc">
             <span>${skin.description[0]}</span> /
@@ -129,10 +138,10 @@ export class Modal {
   onModalOpen(event) {
     if (event.target.classList.contains('modal-open-icon')) {
       this.seller.setOperationType(event.target.name)
-      this.seller.clearChoosenSkin()
       this.open = true;
       this.updateView()
     }else if (event.target.classList.contains('choosen-remove') || event.target.parentElement.classList.contains('choosen-remove')) {
+      this.seller.setOperationType(event.target.dataset.operation)
       this.seller.removeFromChoosenSkins(event)
       this.seller.renderChoosenSkins()
     }
@@ -143,7 +152,11 @@ export class Modal {
   }
   onSkinChoose(event) {
     if (event.target.classList.contains('modal-skin-checkbox')) {
-      this.seller.addChoosenSkin(event)
+      if (event.target.checked){
+        this.seller.addChoosenSkin(event)
+      }else {
+        this.seller.removeFromChoosenSkins(event)
+      }
     }
   }
   onAddChoosenSkins() {

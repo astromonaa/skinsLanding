@@ -580,6 +580,26 @@
   right: 5px;
   top: 5px;
 }
+.seller-skins__item::after {
+  content: "";
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.seller-skins__item:nth-child(1n)::after {
+  background: #D62D30;
+}
+.seller-skins__item:nth-child(2n)::after {
+  background: #FCC02A;
+}
+.seller-skins__item:nth-child(3n)::after {
+  background: #D62D30;
+}
+.seller-skins__item:nth-child(4n)::after {
+  background: #2B74B9;
+}
 
 .modal-wrapper {
   position: fixed;

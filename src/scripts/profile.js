@@ -23,6 +23,8 @@ export class Profile {
   }
   listen() {
     this.sliderControls.addEventListener('click', event => this.switchSlider(event))
+    document.querySelector('.user__link').addEventListener('click', event => this.copyUserLink(event))
+    document.querySelector('.user__hidden-link').addEventListener('click', event => this.copyUserLink(event))
   }
   switchSlider(event) {
     if (event.target.classList.contains('slider-left') && this.toLeft > 0) {
@@ -89,6 +91,15 @@ export class Profile {
       }
     }
     return msgClass
+  }
+  copyUserLink(event) {
+    event.target.nextElementSibling.select()
+    document.execCommand('copy')
+    event.target.classList.add('copied')
+    const timeout = setTimeout(() => {
+      event.target.classList.remove('copied')
+      clearTimeout(timeout)
+    }, 2000)
   }
   updateMessagesView() {
     this.messagesList.innerHTML = ''

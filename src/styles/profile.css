@@ -258,6 +258,9 @@
   flex-wrap: wrap;
   gap: 15px;
 }
+.inventory__skins .seller-skins__item:after {
+  content: none;
+}
 
 .trade-link__wrapper div, .hidden-link__wrapper div {
   border: 1px solid #DDDDDD;
@@ -270,6 +273,15 @@
   cursor: pointer;
   margin-top: 8px;
   margin-bottom: 15px;
+}
+.trade-link__wrapper input, .hidden-link__wrapper input {
+  height: 0;
+  border: none;
+  position: absolute;
+}
+
+.copied {
+  border-color: rgb(112, 151, 112) !important;
 }
 
 .hidden-link__wrapper {
