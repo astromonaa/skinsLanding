@@ -7,31 +7,29 @@
     display: flex;
   }
 }
-* {
-  margin: 0;
-  padding: 0;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 500;
-  box-sizing: border-box;
+@keyframes select {
+  from {
+    display: flex;
+  }
+  to {
+    opacity: 1;
+    top: 111%;
+    height: 220px;
+  }
 }
-
-body {
-  height: 100%;
-}
-
-.container {
-  max-width: 1920px;
-  margin: 0 auto;
-  padding: 30px 70px;
+.traiding-block {
   display: grid;
   grid-template-columns: 1fr 475px;
 }
 
-.breadcrumbs {
-  display: flex;
-  align-items: center;
+.trades {
+  grid-column: 1/2;
+  height: -moz-min-content;
+  height: min-content;
 }
-
+.trades .page__name {
+  margin-top: 30px;
+}
 .trades__item {
   background: #FFFFFF;
   border: 1px solid #DDDDDD;
@@ -291,14 +289,71 @@ body {
   color: #FE6C2E;
   margin-left: 15px;
   cursor: pointer;
+  position: relative;
+  min-width: 214px;
+  z-index: 3;
+}
+.trades__item__middle__select .user-selected__skins {
+  max-width: 150px;
+  overflow: hidden;
 }
 .trades__item__middle__select img:first-child {
   width: 24px;
   height: 24px;
   margin-right: 5px;
 }
-.trades__item__middle__select img:last-child {
-  margin-left: 5px;
+.trades__item__middle__select img:nth-child(3) {
+  margin-left: auto;
+}
+.trades__item__middle__select .select {
+  position: absolute;
+  border: 1px solid #DDDDDD;
+  border-radius: 5px;
+  width: 100%;
+  left: 0;
+  top: 111%;
+  background-color: #fff;
+  z-index: 2;
+  max-height: 220px;
+  overflow: hidden;
+  overflow-y: auto;
+  gap: 10px;
+  flex-direction: column;
+  display: none;
+  transition: all 0.4s;
+  display: none;
+  opacity: 0;
+  top: 70%;
+  padding: 5px;
+}
+.trades__item__middle__select .select::-webkit-scrollbar {
+  width: 1px;
+}
+.trades__item__middle__select .select::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  background-color: lightgray;
+}
+.trades__item__middle__select .select .dropdown__item img {
+  width: 60px;
+  height: 40px;
+  background: #F8F9FB;
+  border-radius: 5px;
+  padding: 2px;
+  margin-right: 8px;
+}
+.trades__item__middle__select .select .dropdown__item input {
+  margin-left: auto;
+}
+.trades__item__middle__select .select .dropdown__item div {
+  max-width: 110px;
+  overflow: hidden;
+}
+.trades__item__middle__select .select .dropdown__item div span {
+  font-size: 13px;
+}
+.trades__item__middle__select .opened-select {
+  animation: select 0.7s ease forwards;
+  display: flex;
 }
 .trades__item__middle__item {
   margin-left: 20px;
@@ -340,7 +395,6 @@ body {
   position: absolute;
   border: 1px solid #DDDDDD;
   border-radius: 5px;
-  padding: 10px;
   width: 100%;
   left: 0;
   top: 111%;
@@ -352,6 +406,8 @@ body {
   gap: 10px;
   flex-direction: column;
   display: none;
+  transition: all 0.4s;
+  padding: 10px;
 }
 .trades__item__middle__item:last-child .dropdown::-webkit-scrollbar {
   width: 1px;
@@ -359,34 +415,6 @@ body {
 .trades__item__middle__item:last-child .dropdown::-webkit-scrollbar-thumb {
   border-radius: 100px;
   background-color: lightgray;
-}
-.trades__item__middle__item:last-child .dropdown__item {
-  display: flex;
-  align-items: center;
-}
-.trades__item__middle__item:last-child .dropdown__item div {
-  display: flex;
-  flex-direction: column;
-}
-.trades__item__middle__item:last-child .dropdown__item div span {
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 20px;
-  color: #2D2B2D;
-}
-.trades__item__middle__item:last-child .dropdown__item div span:first-child {
-  color: #B5B5B5;
-}
-.trades__item__middle__item:last-child .dropdown__item img:first-child {
-  width: 80px;
-  height: 60px;
-  background: #F8F9FB;
-  border-radius: 5px;
-  padding: 2px;
-  margin-right: 10px;
-}
-.trades__item__middle__item:last-child .dropdown__item img:last-child {
-  margin-left: auto;
 }
 .trades__item__middle__item:last-child .visible-dropdown {
   display: flex;
@@ -423,28 +451,47 @@ body {
   flex-wrap: wrap;
   gap: 5px;
 }
-.trades__item__bottom__item label .choosen-skins .choosen-skins-item {
+.trades__item__bottom__item label .choosen-skins-item {
   padding: 7px 15px;
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
   border-radius: 5px;
+  position: relative;
 }
-.trades__item__bottom__item label .choosen-skins .choosen-skins-item:first-child {
+.trades__item__bottom__item label .choosen-skins-item:first-child {
   color: #FCC02A;
   background: rgba(252, 192, 42, 0.1);
 }
-.trades__item__bottom__item label .choosen-skins .choosen-skins-item:nth-child(even) {
+.trades__item__bottom__item label .choosen-skins-item:nth-child(even) {
   background: rgba(214, 45, 48, 0.1);
   color: #D62D30;
 }
-.trades__item__bottom__item label .choosen-skins .choosen-skins-item:nth-child(odd) {
+.trades__item__bottom__item label .choosen-skins-item:nth-child(odd) {
   background: rgba(214, 45, 48, 0.1);
   color: #D62D30;
 }
-.trades__item__bottom__item label .choosen-skins .choosen-skins-item:nth-child(5n) {
+.trades__item__bottom__item label .choosen-skins-item:nth-child(5n) {
   background: rgba(43, 116, 185, 0.1);
   color: #2B74B9;
+}
+.trades__item__bottom__item label .choosen-skins-item div {
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #2D2B2D;
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  display: none;
+}
+.trades__item__bottom__item label .choosen-skins-item div img {
+  margin: 0;
+}
+.trades__item__bottom__item label .choosen-skins-item:hover div {
+  display: flex;
 }
 .trades__item__bottom__item label img {
   margin-left: auto;
@@ -460,6 +507,7 @@ body {
   border-radius: 10px;
   padding: 25px;
   margin-top: 20px;
+  grid-column: 1/2;
 }
 .products-block .seller-item {
   background: #F8F9FB;
@@ -586,12 +634,15 @@ body {
   border: 1px solid #DDDDDD;
   border-radius: 10px;
   padding: 25px 14px;
-  margin-top: 80px;
+  margin-top: 108px;
   margin-left: 20px;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr min-content;
   max-height: 78vh;
+  height: 78vh;
+  grid-row: 1/4;
+  grid-column: 2/3;
 }
 .chat-block .input-wrapper {
   border: 1px solid #DDDDDD;
@@ -650,9 +701,60 @@ body {
   gap: 10px;
 }
 
+.dropdown__item {
+  display: flex;
+  align-items: center;
+}
+.dropdown__item div {
+  display: flex;
+  flex-direction: column;
+}
+.dropdown__item div span {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #2D2B2D;
+}
+.dropdown__item div span:first-child {
+  color: #B5B5B5;
+}
+.dropdown__item img:first-child {
+  width: 80px;
+  height: 60px;
+  background: #F8F9FB;
+  border-radius: 5px;
+  padding: 2px;
+  margin-right: 10px;
+}
+.dropdown__item img:last-child {
+  margin-left: auto;
+  display: none;
+}
+.dropdown__item:hover img {
+  display: block;
+}
+
 .visible-modal-wrapper {
   display: flex;
 }
 .visible-modal-wrapper .modal-window {
   animation: modalShow 0.3s ease forwards;
+}
+
+@media (max-width: 1500px) {
+  .traiding-block {
+    grid-template-columns: 1fr 392px;
+  }
+  .trades {
+    grid-column: 1/3;
+    grid-row: 1/2;
+  }
+  .chat-block {
+    margin-top: 20px;
+    grid-row: 2/3;
+    grid-column: 2/3;
+  }
+  .products-block {
+    grid-row: 2/3;
+  }
 }/*# sourceMappingURL=styles.css.map */

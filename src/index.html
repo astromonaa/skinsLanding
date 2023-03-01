@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles/global.css">
   <link rel="stylesheet" href="./styles/styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +20,7 @@
     <div class="traiding-block">
       <div class="breadcrumbs">Главная . Обмен</div>
       <div class="trades">
-        <h1>Обмен скинов</h1>
+        <h1 class="page__name">Обмен скинов</h1>
         <section class="trades__item">
           <!-------------------------------------TRADES ITEM TOP ---------------------------------------------------->
           <div class="trades__item__top">
@@ -54,7 +55,7 @@
                   </div>
                 </div>
               </div>
-              <button class="my-button login-btn">Login</button>
+              <a href="/profile.html" class="my-button login-btn">Login</a>
             </div>
             <div class="trades__item__top__item">
               <span class="desc-field">Quality</span>
@@ -71,8 +72,11 @@
           <div class="trades__item__middle">
             <div class="trades__item__middle__select">
               <img src="./assets/trades-item-package.svg" alt="icon">
-              AWP, AK-47, USP-S
+              <span class="user-selected__skins"></span>
               <img src="./assets/Polygon.svg" alt="icon">
+              <div class="select">
+                
+              </div>
             </div>
             <div class="trades__item__middle__item">
               <input type="checkbox" name="" id="">
@@ -121,18 +125,18 @@
           <button class="my-button skin-add-button">Add</button>
         </div>
       </div>
+      
+      <div class="chat-block">
+        <div class="chat-messages"></div>
+        <label class="input-wrapper" for="message-input">
+          <input type="text" id="message-input" placeholder="Написать сообщение">
+          <img src="./assets/smile.svg" alt="">
+        </label>
+      </div>
     </div>
 
     <!------------------------------------------ CHAT BLOCK ------------------------------------- -->
-    <div class="chat-block">
-      <div class="chat-messages"></div>
-      <label class="input-wrapper" for="message-input">
-        <input type="text" id="message-input" placeholder="Написать сообщение">
-        <img src="./assets/smile.svg" alt="">
-      </label>
-    </div>
   </div>
-  
   <script src="./scripts/index.js"></script>
 </body>
 

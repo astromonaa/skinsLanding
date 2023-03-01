@@ -1,18 +1,27 @@
+import '../styles/global.css'
 import '../styles/styles.css'
-import '../styles/ui.css'
+import '../styles/profile.css'
+
 import { initData } from '../utils/initData'
 import { Seller, Skin, Modal, Chat, TradeBoard } from './main'
+import { Profile } from './profile'
 
 import tradesItem from '../assets/trades-item-package.svg'
 import Polygon from '../assets/Polygon.svg'
 import Search from '../assets/search.svg'
-import Exchange from '../assets/exchange.svg'
+import ExchangeIcon from '../assets/exchange.svg'
 import AddIcon from '../assets/add.svg'
 import CloseIcon from '../assets/close.svg'
 import smileIcon from '../assets/smile.svg'
+import userImage from '../assets/user-image.png'
+import Steam from '../assets/steam.svg'
+import Like from '../assets/like.svg'
+import disLike from '../assets/dislike.svg'
+import sliderLeft from '../assets/slider-left.svg'
+import sliderRight from '../assets/slider-right.svg'
+import sliderLeftDisabled from '../assets/slider-left-disabled.svg'
 
-
-class App {
+class ExchangeApp {
   constructor(initData) {
     this.initData = initData
     this.sellers = [];
@@ -33,11 +42,12 @@ class App {
       })
       this.sellers.push(seller)
     })
-    this.user = new Seller(this.sellers[0].skins, 0, this.sellers[0].avatar, [])
+    this.user = new Seller(this.sellers[0].skins, 0, this.sellers[0].avatar)
     this.user.calculateTotalPrice()
+    this.tradeBoard = new TradeBoard(this.user)
     this.modal = new Modal(this.user)
     this.chat = new Chat(this.user)
-    this.tradeBoard = new TradeBoard(this.user)
+    this.user.setTradeBoard(this.tradeBoard)
   }
   renderData() {
     this.sellers.forEach(seller => {
@@ -96,7 +106,29 @@ class App {
   }
 }
 
+class ProfileApp {
+  constructor(initData) {
+    this.user = null;
+    this.initData = initData;
+    this.init()
+  }
+  init() {
+    this.user = new Seller([], 0, this.initData[0].avatar)
+    this.initData[0].skins.forEach(item => {
+      const skin = new Skin(item.id, item.image, item.description, item.price, item.name)
+      this.user.addSkin(skin)
+      this.user.increasePrice(skin.price)
+    })
+    this.profile = new Profile(this.user)
+  }
+}
+
+
 if (!window.app) {
-  window.app = new App(initData)
-  window.app.renderData()
+  if (window.location.pathname === '/'){
+    window.app = new ExchangeApp(initData)
+    window.app.renderData()
+  }else if (window.location.pathname === '/profile.html') {
+    window.app = new ProfileApp(initData)
+  }
 }

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="./styles/global.css">
+		<link rel="stylesheet" href="./styles/profile.css">
+		<link rel="stylesheet" href="./styles/styles.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+		<title>Profile</title>
+	</head>
+	<body>
+		<div class="profile-container">
+			<div class="breadcrumbs">Главная . Профиль</div>
+			<h1>Личная информация</h1>
+			<section class="profile-block">
+				<div class="user-info">
+					<div class="user-info__top">
+						<div class="personal">
+							<img src="./assets/user-image.png" alt="user">
+							<div>
+								<span>Path</span>
+								<small>На сайте с 29.06.2020</small>
+								<a href="#">
+									<img src="./assets/steam.svg" alt="steam">
+									Steam профиль
+								</a>
+							</div>
+						</div>
+						<div class="like-buttons">
+							<button class="like-button">
+								<img src="./assets/like.svg" alt="">
+								<span>Лайк (204)</span>
+							</button>
+							<button class="dislike-button">
+								<img src="./assets/dislike.svg" alt="">
+								<span>Дизлайк (4)</span>
+							</button>
+						</div>
+					</div>
+					<div class="user-info__bottom">
+						<div class="trade-link__wrapper">
+							<span>Trade Link</span>
+							<div>steamcommunity.com/tradeoffer/new/?part...</div>
+						</div>
+						<button class="my-button">Trade</button>
+					</div>
+				</div>
+				<div class="hidden-link__wrapper">
+					<span>Trade Link</span>
+					<div>steamcommunity.com/tradeoffer/new/?part...</div>
+				</div>
+				<div class="last-messages">
+					<div class="messages-top">
+						<span>Последние сообщения</span>
+						<div class="slider-controls">
+							<img src="./assets/slider-left.svg" class="slider-left" alt="icon">
+							<img src="./assets/slider-right.svg" class="slider-right" alt="icon">
+						</div>
+					</div>
+					<div class="profile-messages-list"></div>
+				</div>
+			</section>
+			<section class="inventory">
+				<div class="inventory__top">
+					<span>Инвентарь</span>
+					<div>
+						<span>Всего:</span>
+						<span>&#x24;</span>
+						<span class="inventory-skins__price"></span>
+					</div>
+				</div>
+				<div class="inventory__skins">
+					<div class="seller-skins__item">
+						<img src="./assets/skin4.png" alt="skin">
+						<div class="skin-desc">
+							<span>ST</span>
+							/
+							<span>FN</span>
+							<span>0.0589</span>
+						</div>
+						<div class="skin-price">
+							<span>
+								&#x24;</span>
+							<span>900</span>
+						</div>
+					</div>
+					<div class="seller-skins__item">
+						<img src="./assets/skin4.png" alt="skin">
+						<div class="skin-desc">
+							<span>ST</span>
+							/
+							<span>FN</span>
+							<span>0.0589</span>
+						</div>
+						<div class="skin-price">
+							<span>
+								&#x24;</span>
+							<span>900</span>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</body>
+</html>
